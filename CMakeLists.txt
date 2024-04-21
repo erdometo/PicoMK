@@ -1,4 +1,4 @@
-# Generated Cmake Pico project file
+        # Generated Cmake Pico project file
 
 cmake_minimum_required(VERSION 3.13)
 
@@ -14,10 +14,13 @@ set(CMAKE_CXX_STANDARD 20)
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
 set(PICO_SDK_PATH "${CMAKE_CURRENT_SOURCE_DIR}/pico-sdk")
+set(PICO_EXTRAS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/pico-extras")
 set(FREERTOS_KERNEL_PATH, "${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS-Kernel")
+
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
+include(pico_extras_import.cmake)
 include(FreeRTOS_Kernel_import.cmake)
 include(config.cmake)
 
@@ -69,7 +72,8 @@ target_link_libraries(firmware
         pico_stdlib 
         tinyusb_device 
         FreeRTOS-Kernel 
-        FreeRTOS-Kernel-Heap4)
+        FreeRTOS-Kernel-Heap4
+        hardware_sleep)
 
 add_compile_definitions(
         PICO_HEAP_SIZE=65536)
@@ -97,4 +101,3 @@ target_include_directories(firmware PRIVATE
         )
 
 pico_add_extra_outputs(firmware)
-
